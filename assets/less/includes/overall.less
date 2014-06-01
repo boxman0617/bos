@@ -1,0 +1,27 @@
+// Styles that apply overall
+
+body {
+	background-color: @gray-lightest;
+}
+
+.wrapper {
+	float: left;
+	margin-top: @menu-margin-top;
+	padding-left: @menu-width + (@wrapper-top-gap / 2);
+	padding-top: @wrapper-top-gap;
+	width: 100%;
+	.container {
+		padding-bottom: @wrapper-top-gap;
+		width: 100%;
+	}
+}
+
+.row {
+	margin-bottom: @row-margin;
+}
+
+@media (max-width: @small-devices)  {
+	.wrapper {
+		padding-left: 0;
+	}
+}

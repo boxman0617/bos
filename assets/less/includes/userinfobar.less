@@ -1,0 +1,24 @@
+// User Info Bar Specific less file
+
+#user-info-bar {
+	position: fixed;
+	float: left;
+	width: 100%;
+	background: none repeat scroll 0 0 @gray-darkest;
+	z-index: @z-top;
+
+	padding: @user-info-ver @user-info-hor;
+
+	border-bottom: @user-info-border solid @blue-light;
+
+	.logo {
+		color: @gray-lightest;
+		font-family: 'Pacifico', cursive;
+		font-size: @logo-base;
+		span {
+			color: @blue-light;
+			font-family: 'Roboto', sans-serif;
+			font-size: @logo-base * @logo-rate;
+		}
+	}
+}
