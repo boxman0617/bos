@@ -5,9 +5,9 @@
 	float: left;
 	top: 0; bottom: 0;
 	padding-top: @menu-margin-top;
-	background: none repeat scroll 0 0 @gray-darkest;
+	background: none repeat scroll 0 0 @menu-bg;
 	z-index: @z-top - 1;
-	border-right: @user-info-border solid @blue-light;
+	border-right: @user-info-border solid @menu-border-color;
 	width: @menu-width;
 
 	ul, ul li, ul li a {
@@ -24,18 +24,18 @@
 				margin-top: 0;
 			}
 			a {
-				color: darken(@gray-lightest, 10%);
+				color: @menu-a-color;
 				text-align: center;
 				text-decoration: none;
 				font-size: 10px;
 				padding: 10px 0;
-				border-bottom: 1px solid lighten(@gray-darkest, 10%);
+				border-bottom: 1px solid @menu-a-border-color;
 
 				.transition(background-color 300ms);
 
 				&:hover {
-					background-color: lighten(@gray-darkest, 10%);
-					color: @gray-lightest;
+					background-color: @menu-a-bg-hover;
+					color: @menu-a-hover;
 				}
 				i {
 					font-size: 26px;
@@ -47,7 +47,7 @@
 
 			&.active {
 				a {
-					background-color: @blue-dark;
+					background-color: @menu-a-active-bg;
 				}
 			}
 		}
@@ -60,7 +60,7 @@
 		float: left;
 		top: auto;
 		left: 0; right: 0; bottom: 0;
-		border-top: @user-info-border solid @blue-light;
+		border-top: @user-info-border solid @menu-border-color;
 		border-right: none;
 		width: 100%;
 		padding-top: 0;

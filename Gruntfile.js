@@ -16,7 +16,7 @@
 
 module.exports = function (grunt) {
 
-
+  require('logfile-grunt')(grunt);
 
   /**
    * CSS files to inject in order
@@ -184,20 +184,32 @@ module.exports = function (grunt) {
 
     less: {
       dev: {
+        options: {
+          compress: true,
+          cleancss: true
+        },
         files: [
           {
-          expand: true,
-          cwd: 'assets/styles/',
-          src: ['*.less'],
-          dest: '.tmp/public/styles/',
-          ext: '.css'
-        }, {
-          expand: true,
-          cwd: 'assets/linker/styles/',
-          src: ['*.less'],
-          dest: '.tmp/public/linker/styles/',
-          ext: '.css'
-        }
+            expand: true,
+            cwd: 'assets/styles/',
+            src: ['*.less'],
+            dest: '.tmp/public/styles/',
+            ext: '.css'
+          }, 
+          {
+            expand: true,
+            cwd: 'assets/linker/styles/',
+            src: ['*.less'],
+            dest: '.tmp/public/linker/styles/',
+            ext: '.css'
+          },
+          {
+            expand: true,
+            cwd: 'assets/less/',
+            src: ['main.less'],
+            dest: 'assets/styles/',
+            ext: '.css'
+          }
         ]
       }
     },

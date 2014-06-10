@@ -1,0 +1,3 @@
+$(function(){
+	DropZoneConfig.init('startingPointDropzone');
+});

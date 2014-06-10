@@ -1,43 +1,74 @@
 // Colors
 
-@gray-lightest: 	#F2F2F2;
-@gray-light: 		#C4C4C4;
-@gray-darkest: 		#171717;
-@blue-dark: 		#0068B8;
-@blue-light: 		#0091FE;
-@blue-lightest: 	#00BBFF;
+@gray-lightest    : #FFFFFF;
+@gray-light       : #EEEEEE;
+@gray-darkest     : #515151;
+
+@black            : #1B1B1B;
+
+@blue-dark        : #3399CC;
+@blue-light       : #67B8DE;
+@blue-lightest    : #91C9E8;
+
+@success-green    : #69DE68;
+@error-red        : #DE6359;
+
+// Colors - Assignment
+@menu-bg          : @gray-darkest;
+@menu-border-color: @blue-lightest;
+@menu-a-color     : darken(@gray-lightest, 10%);
+@menu-a-border-color: lighten(@gray-darkest, 10%);
+@menu-a-bg-hover  : @menu-a-border-color;
+@menu-a-hover     : @gray-lightest;
+@menu-a-active-bg : @blue-dark;
+
+@flat-panel-color : @black;
+@headings-color   : @black;
+
+@dz-bg            : @gray-light;
+@dz-border-color  : @blue-light;
+@dz-drag-hover-bg : @gray-darkest;
+@dz-drag-hover-border: @blue-lightest;
+@dz-message-color : @blue-dark;
+@dz-message-color-hover: @gray-lightest;
+@dz-preview-bg    : @gray-lightest;
+@dz-progress-bar  : @blue-lightest;
+@dz-progress-border: @blue-light;
+@dz-preview-bg-error: darken(@dz-preview-bg, 5%);
 
 // Stacking Order [z-index]
 
-@z-base: 			1;
-@z-top: 			100;
+@z-base           : 1;
+@z-top            : 100;
 
 // Font-Sizes
 
-@logo-base: 		20px;
-@logo-rate: 		1.3;
+@logo-base        : 20px;
+@logo-rate        : 1.3;
 
 // Padding/Margin
 
-@user-info-ver: 	5px;
-@user-info-hor: 	10px;
+@user-info-ver    : 5px;
+@user-info-hor    : 10px;
 
-@gap: 				10px;
-@menu-margin-top: 	(@user-info-ver * 2) + (@logo-base * @logo-rate) + @gap;
-@wrapper-top-gap: 	30px;
-@row-margin: 		15px;
+@gap              : 10px;
+@menu-margin-top  : (@user-info-ver * 2) + (@logo-base * @logo-rate) + @gap;
+@wrapper-top-gap  : 30px;
+@row-margin       : 15px;
+
+@dz-preview-padding: 10px;
 
 //## Panel Padding/Margin
-@panel-padding: 	20px;
+@panel-padding    : 20px;
 
 // Border Sizes
 
-@user-info-border: 	2px;
+@user-info-border : 2px;
 
 // Sizes
 
-@menu-width: 		80px;
+@menu-width       : 80px;
 
 // Breakpoints
 
-@small-devices: 	480px;
+@small-devices    : 480px;

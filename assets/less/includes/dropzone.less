@@ -1,0 +1,170 @@
+.dropzone {
+	display: table;
+	width: 100%;
+	&:after {
+		content: '';
+		clear: both;
+	}
+	border: 1px solid @dz-border-color;
+	background-color: @dz-bg;
+	padding: @panel-padding;
+	.border-radius();
+	.transition(all 500ms);
+
+	.dz-message {
+		text-align: center;
+		font-size: 26px;
+		position: absolute;
+		left: 0;
+		right: 0;
+		top: 50%;
+		margin-top: -21px;
+		&:before, &:after {
+			color: @dz-message-color;
+			content: '-';
+			padding: 0 10px;
+		}
+		span {
+			color: @dz-message-color;
+			font-family: Pacifico,cursive;
+		}
+	}
+
+	.dz-success, .dz-error {
+		.dz-progress {
+			.dz-upload {
+				display: none !important;
+			}
+		}
+	}
+
+	.dz-preview {
+		.dz-progress {
+			position: absolute;
+			top: 0; left: 0; right: 0; bottom: 0;
+			opacity: 0.6;
+			.dz-upload {
+				background-color: @dz-progress-bar;
+				display: block;
+				height: 100%;
+				border-right: 2px solid @dz-progress-border;
+			}
+		}
+		float: left;
+		z-index: @z-base + 1;
+
+		&:nth-child(2) {
+			margin-left: 0;
+		}
+
+		margin-left: 20px;
+
+		position: relative;
+		width: 200px;
+		height: 250px;
+		padding: @dz-preview-padding;
+		background-color: @dz-preview-bg;
+		.box-shadow(0 0 25px -4px rgba(0,0,0,.50));
+
+		.dz-details {
+			.dz-size {
+				position: absolute;
+				bottom: @dz-preview-padding; right: @dz-preview-padding;
+			}
+			img {
+				display: none;
+			}
+		}
+
+		&:before {
+			.box-shadow(0 0 14px 7px @dz-bg);
+			.transition(all 500ms);
+			content: "";
+			position: absolute;
+			top: 0;
+			right: 0;
+			border-width: 0 16px 16px 0;
+			border-style: solid;
+			border-color: darken(@dz-preview-bg, 40%) @dz-bg;
+		}
+	}
+}
+
+.dz-success-mark, .dz-error-mark {
+	position: absolute;
+	bottom: -7px;
+	left: -5px;
+	border-radius: 100%;
+	width: 30px;
+	height: 30px;
+	text-align: center;
+	color: #fff;
+	padding-top: 5px;
+}
+
+.dz-success-mark {
+	background-color: @success-green;
+	display: none;
+}
+
+.dz-error-mark {
+	background-color: @error-red;
+	display: none;
+}
+
+.dz-error {
+	background-color: @dz-preview-bg-error !important;
+	.dz-error-message {
+		position: absolute;
+		top: 50%;
+		text-align: center;
+		left: -10px;
+		right: -10px;
+		margin-top: -38px;
+		background-color: lighten(@error-red, 10%);
+		color: @gray-lightest;
+		padding: 5px 0;
+		.box-shadow(0 0 14px -4px @gray-darkest);
+	}
+	.dz-success-mark {
+		display: none;
+	}
+	.dz-error-mark {
+		display: block;
+	}
+}
+
+.dz-success {
+	.dz-error-message {
+		display: none;
+	}
+	.dz-error-mark {
+		display: none;
+	}
+	.dz-success-mark {
+		display: block;
+	}
+
+	.dz-actions {
+		position: absolute;
+		top: 50%;
+		margin-top: -50px;
+		left: @dz-preview-padding; right: @dz-preview-padding;
+	}
+}
+
+.dz-drag-hover {
+	background-color: @dz-drag-hover-bg;
+	border-color: @dz-drag-hover-border;
+	.dz-message {
+		span {
+			color: @dz-message-color-hover;
+		}
+	}
+	.dz-preview {
+		&:before {
+			border-color: darken(@dz-preview-bg, 40%) @dz-drag-hover-bg;
+			.box-shadow(none);
+		}
+	}
+}

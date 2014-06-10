@@ -36,7 +36,9 @@ module.exports.routes = {
   '/': 'HomeController.index',
   '/dash': 'HomeController.dash',
   '/search': 'HomeController.search',
-  '/settings': 'HomeController.settings'
+  '/settings': 'HomeController.settings',
+
+  'post /upload/start': 'UploadController.start'
 
   /*
   // But what if you want your home page to display
