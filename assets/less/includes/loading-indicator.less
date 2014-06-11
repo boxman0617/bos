@@ -1,0 +1,40 @@
+.loading-indicator {
+	position: absolute;
+	top: 0; left: 0; right: 0; bottom: 0;
+
+	.li-screen {
+		background-color: @pageload-bg;
+		position: absolute;
+		top: 0; left: 0; right: 0; bottom: 0;
+		z-index: 1000;
+		&.nodisplay {
+			opacity: 0;
+		}
+	}
+
+	.li-bars {
+		z-index: 1001;
+		position: absolute;
+		top: 50%; left: 50%;
+		margin-left: (30px / 2) * -1;
+		margin-top: (((5px * 3) + (5px * 2)) / 2) * -1;
+		.li-bar {
+			&.nodisplay {
+				opacity: 0;
+			}
+			width: 30px;
+			height: 5px;
+			margin-bottom: 5px;
+			&:last-child {
+				margin-bottom: 0;
+			}
+			.border-radius(2px);
+			overflow: hidden;
+			background-color: @pageload-bar-bg;
+			div {
+				background-color: @pageload-bar-fg;
+				height: 5px;
+			}
+		}
+	}
+}

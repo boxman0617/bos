@@ -1,4 +1,5 @@
 .dropzone {
+	cursor: pointer;
 	display: table;
 	width: 100%;
 	&:after {
@@ -152,6 +153,10 @@
 		left: @dz-preview-padding; right: @dz-preview-padding;
 		a {
 			width: 100%;
+			margin-bottom: 2px;
+			&:last-child {
+				margin-bottom: 0;
+			}
 		}
 	}
 }

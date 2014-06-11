@@ -1,3 +1,3 @@
 $(function(){
-	DropZoneConfig.init('startingPointDropzone');
+	App.init(jDepend);
 });

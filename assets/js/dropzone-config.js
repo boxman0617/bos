@@ -2,10 +2,13 @@
  * DropZoneConfig :: Requires dropsone.js before it
  * This will configure DropZone.js before running and
  * attach some event handlers
+ *
+ * dependsOn: ['dropzone.js', 'file.js']
  */
 var DropZoneConfig = {
 	'_id': null,
 	'_csrf': $('meta[name=token]').attr('content'),
+	'_files': [],
 
 	'init': function(id) {
 		this._id = id;
@@ -30,8 +33,8 @@ var DropZoneConfig = {
 				});
 
 				this.on('sending', function(file, xhr, data) {
-          data.append('_csrf', ref._csrf);
-        });
+		          	data.append('_csrf', ref._csrf);
+		        });
 
 				this.on('success', function(file, res) {
 					ref.onSuccess(file, res);
@@ -41,12 +44,6 @@ var DropZoneConfig = {
 	},
 
 	'onSuccess': function(file, res) {
-		var $dz = $('#dz-'+file.uid);
-
-		var $actions = $('<div class="dz-actions"></div>');
-		var $start = $('<a class="btn btn-default">Start Load</a>');
-		$actions.append($start);
-
-		$dz.append($actions);
+		var loadedFile = new File(file);
 	}
 };
