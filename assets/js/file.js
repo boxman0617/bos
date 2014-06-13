@@ -29,6 +29,7 @@ function File(file) {
 	};
 
 	this.startLoad = function() {
+		var ref = this;
 		var l = new LoadIndicator('#dz-'+this._file.uid+' .dz-actions');
 		$.ajax({
 		    'type': 'POST',
@@ -43,7 +44,7 @@ function File(file) {
 		    },
 		    'success': function(data) {
 		    	if(data.status === 'OK') {
-		    		
+		    		new FileTracking(ref);
 		    	}
 		    }
 		});

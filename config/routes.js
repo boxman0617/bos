@@ -40,7 +40,10 @@ module.exports.routes = {
 
   'post /upload/start': 'UploadController.start',
 
-  'post /file/start/load': 'FileController.start'
+  'post /file/start/load': 'FileController.start',
+  'post /file/start/tracking': 'FileController.startTracking',
+  'post /file/accept/validation': 'FileController.validationAccepted'
+
 
   /*
   // But what if you want your home page to display

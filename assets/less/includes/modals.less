@@ -1,0 +1,125 @@
+#tracking-modal {
+	.modal-title {
+		.file-name {
+			color: @m-tracking-title;
+		}
+	}
+	.modal-body {
+		.file {
+			&.file-stage-load-qa {
+				margin-right: 0;
+			}
+			float: left;
+			position: relative;
+			width: 160px;
+			height: 180px;
+			padding: @dz-preview-padding;
+
+			background-color: darken(@dz-preview-bg, 4%);
+			.status-running, .status-success, .status-fail, .status-check, .actions {
+				display: none;
+			}
+			.actions {
+				margin-top: 10px;
+				.btn {
+					width: 100%;
+					margin-bottom: 3px;
+					&:last-child {
+						margin-bottom: 0;
+					}
+				}
+			}
+			.title {
+				color: lighten(@black, 10%);
+				text-align: center;
+				border-bottom: 1px solid @blue-dark;
+				text-transform: uppercase;
+			}
+			&.active {
+				background-color: @dz-preview-bg;
+				.title {
+					color: @black;
+					border-color: @blue-light;
+				}
+			}
+			
+			&.check {
+				.status-check, .actions {
+					display: block;
+				}
+				.status-success, .status-fail, .status-running {
+					display: none;
+				}
+			}
+			&.running {
+				.status-running {
+					display: block;
+				}
+				.status-success, .status-fail, .status-check, .actions {
+					display: none;
+				}
+			}
+			&.success {
+				.status-success {
+					display: block;
+				}
+				.status-running, .status-fail, .status-check, .actions {
+					display: none;
+				}
+			}
+			&.fail {
+				.status-fail {
+					display: block;
+				}
+				.status-success, .status-running, .status-check, .actions {
+					display: none;
+				}
+			}
+
+			margin-right: 14px;
+			.box-shadow(0 0 13px -4px rgba(0,0,0,.50));
+			&:before {
+				.box-shadow(0 0 4px -2px @dz-bg);
+				.transition(all 500ms);
+				content: "";
+				position: absolute;
+				top: 0;
+				right: 0;
+				border-width: 0 16px 16px 0;
+				border-style: solid;
+				border-color: darken(@dz-preview-bg, 40%) @dz-bg;
+			}
+
+			.status {
+				position: absolute;
+				bottom: -10px;
+				left: -8px;
+				width: 25px;
+				height: 25px;
+				text-align: center;
+				border-radius: 100%;
+				
+				&.status-check {
+					background-color: @warning-yellow;
+					color: #FFFFFF;
+					padding-top: 3px;
+				}
+				&.status-running {
+					background-color: @blue-light;
+					color: #FFFFFF;
+					padding-top: 3px;
+				}
+				&.status-success {
+					background-color: @success-green;
+					color: #FFFFFF;
+					padding-top: 3px;
+				}
+				&.status-fail {
+					background-color: @error-red;
+					color: #FFFFFF;
+					padding-top: 3px;
+				}
+			}
+		}
+	}
+}

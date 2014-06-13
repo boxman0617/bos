@@ -1,3 +1,3 @@
 $(function(){
-	App.init(jDepend);
+	App.init(jDepend, io);
 });

@@ -18,5 +18,30 @@
 module.exports = {
 	'start': function(req, res) {
 		res.json({'status': 'OK'}, 200);
+	},
+
+	'startTracking': function(req, res) {
+		res.json({'msg': 'Uhhh...'}, 200);
+
+		setTimeout(function() {
+			req.socket.emit('message', 'success');
+			setTimeout(function() {
+				res.socket.emit('message', 'success');
+				setTimeout(function() {
+					res.socket.emit('message', 'check');
+				}, 2000);
+			}, 2000);
+		}, 2000);
+	},
+
+	'validationAccepted': function(req, res) {
+		res.json(true, 200);
+
+		setTimeout(function() {
+			req.socket.emit('message', 'success');
+			setTimeout(function() {
+				res.socket.emit('message', 'check');
+			}, 2000);
+		}, 2000);
 	}
 };

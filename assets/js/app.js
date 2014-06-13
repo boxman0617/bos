@@ -11,8 +11,10 @@ var App = {
   '_loadLength': 0,
   '_loaded': 0,
   '_loading': false,
+  '_io': null,
 
-  'init': function(jDepend) {
+  'init': function(jDepend, io) {
+    this._io = io;
 
     this.startPageLoad();
     this.runjDepend(jDepend);
@@ -28,18 +30,6 @@ var App = {
   },
 
   'startPageLoad': function() {
-    var $pl = $('<div id="pageload"></div>');
-    $pl.append($('<div class="pl-message">One moment please...</div>'));
-
-    var $bars = $('<div class="pl-bars"></div>');
-    var $bar1 = $('<div class="pl-bar pl-bar1 nodisplay"><div style="width: 0%;"></div></div>');
-    var $bar2 = $('<div class="pl-bar pl-bar2 nodisplay"><div style="width: 0%;"></div></div>');
-    var $bar3 = $('<div class="pl-bar pl-bar3 nodisplay"><div style="width: 0%;"></div></div>');
-
-    $pl.append($bars);
-    $bars.append($bar1, $bar2, $bar3);
-    $('body').append($pl);
-
     this._loading = true;
     this.loading();
   },

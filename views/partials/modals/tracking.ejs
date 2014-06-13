@@ -1,0 +1,58 @@
+<div class="modal fade" id="tracking-modal" tabindex="-1" role="dialog" aria-labelledby="trackingLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="trackingLabel">Tracking: <span class="file-name"></span></h4>
+      </div>
+      <div class="modal-body">
+        <div class="file file-stage-arrival">
+          <div class="title">File Arrival</div>
+          <div class="status status-running"><i class="fa fa-cog fa-spin"></i></div>
+          <div class="status status-success"><i class="fa fa-check"></i></div>
+          <div class="status status-fail"><i class="fa fa-times"></i></div>
+        </div>
+        <div class="file file-stage-prep">
+          <div class="title">Data Prep</div>
+          <div class="status status-running"><i class="fa fa-cog fa-spin"></i></div>
+          <div class="status status-success"><i class="fa fa-check"></i></div>
+          <div class="status status-fail"><i class="fa fa-times"></i></div>
+        </div>
+        <div class="file file-stage-validation">
+          <div class="title">Data Validation</div>
+          <div class="status status-running"><i class="fa fa-cog fa-spin"></i></div>
+          <div class="status status-success"><i class="fa fa-check"></i></div>
+          <div class="status status-fail"><i class="fa fa-times"></i></div>
+          <div class="status status-check"><i class="fa fa-flag"></i></div>
+          <div class="actions">
+            <a href="javascript:void(0);" class="btn btn-default action-show">Show Matrices</a>
+            <a href="javascript:void(0);" class="btn btn-success action-accept">Accept</a>
+            <a href="javascript:void(0);" class="btn btn-danger action-reject">Reject</a>
+          </div>
+        </div>
+        <div class="file file-stage-load">
+          <div class="title">Load</div>
+          <div class="status status-running"><i class="fa fa-cog fa-spin"></i></div>
+          <div class="status status-success"><i class="fa fa-check"></i></div>
+          <div class="status status-fail"><i class="fa fa-times"></i></div>
+        </div>
+        <div class="file file-stage-load-qa">
+          <div class="title">Load Validation</div>
+          <div class="status status-running"><i class="fa fa-cog fa-spin"></i></div>
+          <div class="status status-success"><i class="fa fa-check"></i></div>
+          <div class="status status-fail"><i class="fa fa-times"></i></div>
+          <div class="status status-check"><i class="fa fa-flag"></i></div>
+          <div class="actions">
+            <a href="javascript:void(0);" class="btn btn-default action-show">Show Matrices</a>
+            <a href="javascript:void(0);" class="btn btn-success action-accept">Accept</a>
+            <a href="javascript:void(0);" class="btn btn-danger action-reject">Reject</a>
+          </div>
+        </div>
+        <div class="clearfix"></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default action-done" style="display: none;">Done</button>
+        <button type="button" class="btn btn-danger action-cancel" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
