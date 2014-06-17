@@ -1,7 +1,8 @@
 <div class="row">
 	<div class="col-md-10">
 		<div class="page-heading">
-			<h1>Dash <i>Welcome to the Bureau Orchestration Studio</i></h1>
+			<h1 class="hidden-xs hidden-sm">Dash <i>Welcome to the Bureau Orchestration Studio</i></h1>
+			<h1 class="visible-xs visible-sm">Dash <i>Welcome to BOS</i></h1>
 		</div>
 	</div>
 	<div class="col-md-2">
@@ -12,6 +13,134 @@
 	</div>
 </div>
 
+<div id="dash" class="row">
+	<div class="col-md-2">
+		<%- partial('../partials/dropzone') %>
+	</div>
+	<div class="col-md-2 dash-stage-arrival">
+		<div class="dash-panel">
+			<div class="dash-title">File Arrival</div>
+		</div>
+		<div class="dash-stage-status">
+			<div class="status-first">
+				<div class="status">Failed</div>
+				<div class="number">0</div>
+			</div>
+			<div class="status-second">
+				<div class="status">In Progress</div>
+				<div class="number">0</div>
+			</div>
+			<div class="status-third">
+				<div class="status">Completed</div>
+				<div class="number">0</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-2 dash-stage-prep">
+		<div class="dash-panel">
+			<div class="dash-title">Data Prep</div>
+		</div>
+		<div class="dash-stage-status">
+			<div class="status-first">
+				<div class="status">Failed</div>
+				<div class="number">0</div>
+			</div>
+			<div class="status-second">
+				<div class="status">In Progress</div>
+				<div class="number">0</div>
+			</div>
+			<div class="status-third">
+				<div class="status">Completed</div>
+				<div class="number">0</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-2 dash-stage-validation">
+		<div class="dash-panel">
+			<div class="dash-title">Validation</div>
+		</div>
+		<div class="dash-stage-status">
+			<div class="status-first">
+				<div class="status">Failed</div>
+				<div class="number">0</div>
+			</div>
+			<div class="status-second">
+				<div class="status">Validate</div>
+				<div class="number">0</div>
+			</div>
+			<div class="status-third">
+				<div class="status">Completed</div>
+				<div class="number">0</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-2 dash-stage-load">
+		<div class="dash-panel">
+			<div class="dash-title">Load</div>
+		</div>
+		<div class="dash-stage-status">
+			<div class="status-first">
+				<div class="status">Failed</div>
+				<div class="number">0</div>
+			</div>
+			<div class="status-second">
+				<div class="status">In Progress</div>
+				<div class="number">0</div>
+			</div>
+			<div class="status-third">
+				<div class="status">Completed</div>
+				<div class="number">0</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-2 dash-stage-load-qa">
+		<div class="dash-panel">
+			<div class="dash-title">Load QA</div>
+		</div>
+		<div class="dash-stage-status">
+			<div class="status-first">
+				<div class="status">Failed</div>
+				<div class="number">0</div>
+			</div>
+			<div class="status-second">
+				<div class="status">Validate</div>
+				<div class="number">0</div>
+			</div>
+			<div class="status-third">
+				<div class="status">Completed</div>
+				<div class="number">0</div>
+			</div>
+		</div>
+	</div>
+</div>
+
 <div class="row">
-	
+	<div class="col-md-12 dash-table load-qa">
+		<table class="table table-striped table-bordered table-hover datatable display">
+			<thead>
+	            <tr>
+					<th>Bureau Member Name</th>
+					<th>File Name</th>
+					<th>File Arrival</th>
+					<th>Validation</th>
+					<th>Accpeted/Rejected</th>
+					<th>Load Start</th>
+					<th>Accpeted/Rejected</th>
+					<th>Reverted</th>
+	            </tr>
+	        </thead>
+	        <tbody>
+				<tr>
+					<td>1</td>
+					<td>2</td>
+					<td>3</td>
+					<td>4</td>
+					<td>5</td>
+					<td>6</td>
+					<td>7</td>
+					<td>8</td>
+				</tr>
+	        </tbody>
+	    </table>
+    </div>
 </div>

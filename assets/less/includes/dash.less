@@ -1,0 +1,170 @@
+.dash-table {
+	.dataTables_wrapper {
+		border-top-style: solid;
+		border-top-width: 4px;
+		.row:first-child {
+			background-color: @dash-panel-bg;
+			color: @dash-title-color;
+		}
+		.row:last-child, .row:first-child {
+			padding-top: 5px;
+			margin-left: 0; margin-right: 0;
+		}
+		thead {
+			th {
+				font-weight: normal;
+			}
+		}
+	}
+	&.arrival {
+		.dataTables_wrapper {
+			.row:last-child {
+				background-color: @dash-s-arrival;
+			}
+			border-top-color: @dash-s-arrival;
+		}
+	}
+	&.prep {
+		.dataTables_wrapper {
+			.row:last-child {
+				background-color: @dash-s-prep;
+			}
+			border-top-color: @dash-s-prep;
+		}
+	}
+	&.validation {
+		.dataTables_wrapper {
+			.row:last-child {
+				background-color: @dash-s-validation;
+			}
+			border-top-color: @dash-s-validation;
+		}
+	}
+	&.load {
+		.dataTables_wrapper {
+			.row:last-child {
+				background-color: @dash-s-load;
+			}
+			border-top-color: @dash-s-load;
+		}
+	}
+	&.load-qa {
+		.dataTables_wrapper {
+			.row:last-child {
+				background-color: @dash-s-load-qa;
+			}
+			border-top-color: @dash-s-load-qa;
+		}
+	}
+}
+
+.dash-panel {
+	background-color: @dash-panel-bg;
+	border-top-style: solid;
+	border-top-width: 4px;
+	padding: 10px;
+	.dash-title {
+		color: @dash-title-color;
+	}
+}
+.dash-stage-status {
+	.status-first, .status-second, .status-third {
+		.transition(all 100ms);
+		&:hover {
+			background-color: lighten(@gray-darkest, 10%) !important;
+			color: @gray-lightest;
+		}
+		cursor: pointer;
+		position: relative;
+		padding: @dash-status-padding;
+		.number {
+			position: absolute;
+			top: @dash-status-padding; right: @dash-status-padding;
+			font-weight: bold;
+		}
+	}
+	.status-third {
+		.border-radiuses(0, 5px, 5px, 0);
+	}
+}
+
+.dash-stage-arrival {
+	.dash-stage-status {
+		.status-first {
+			background-color: @dash-s-arrival;
+		}
+		.status-second {
+			background-color: darken(@dash-s-arrival, 5%);
+		}
+		.status-third {
+			background-color: darken(@dash-s-arrival, 10%);
+		}
+	}
+	.dash-panel {
+		border-top-color: @dash-s-arrival;
+	}
+}
+.dash-stage-prep {
+	.dash-stage-status {
+		.status-first {
+			background-color: @dash-s-prep;
+		}
+		.status-second {
+			background-color: darken(@dash-s-prep, 5%);
+		}
+		.status-third {
+			background-color: darken(@dash-s-prep, 10%);
+		}
+	}
+	.dash-panel {
+		border-top-color: @dash-s-prep;
+	}
+}
+.dash-stage-validation {
+	.dash-stage-status {
+		.status-first {
+			background-color: @dash-s-validation;
+		}
+		.status-second {
+			background-color: darken(@dash-s-validation, 5%);
+		}
+		.status-third {
+			background-color: darken(@dash-s-validation, 10%);
+		}
+	}
+	.dash-panel {
+		border-top-color: @dash-s-validation;
+	}
+}
+.dash-stage-load {
+	.dash-stage-status {
+		.status-first {
+			background-color: @dash-s-load;
+		}
+		.status-second {
+			background-color: darken(@dash-s-load, 5%);
+		}
+		.status-third {
+			background-color: darken(@dash-s-load, 10%);
+		}
+	}
+	.dash-panel {
+		border-top-color: @dash-s-load;
+	}
+}
+.dash-stage-load-qa {
+	.dash-stage-status {
+		.status-first {
+			background-color: @dash-s-load-qa;
+		}
+		.status-second {
+			background-color: darken(@dash-s-load-qa, 5%);
+		}
+		.status-third {
+			background-color: darken(@dash-s-load-qa, 10%);
+		}
+	}
+	.dash-panel {
+		border-top-color: @dash-s-load-qa;
+	}
+}

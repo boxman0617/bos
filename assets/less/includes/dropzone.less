@@ -1,3 +1,11 @@
+.col-md-2 {
+	.dropzone {
+		.dz-message {
+			font-size: 16px;
+		}
+	}
+}
+
 .dropzone {
 	cursor: pointer;
 	display: table;
@@ -20,14 +28,19 @@
 		right: 0;
 		top: 50%;
 		margin-top: -21px;
-		&:before, &:after {
-			color: @dz-message-color;
-			content: '-';
-			padding: 0 10px;
-		}
 		span {
 			color: @dz-message-color;
 			font-family: Pacifico,cursive;
+			.dz-main-message {
+				&:before, &:after {
+					color: @dz-message-color;
+					content: '-';
+					padding: 0 10px;
+				}
+			}
+			.dz-secondary-message {
+				font-size: 14px;
+			}
 		}
 	}
 

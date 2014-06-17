@@ -25,6 +25,7 @@ var DropZoneConfig = {
 		var ref = this;
 		Dropzone.options[this._id] = {
 			'acceptedFiles': 'text/plain',
+			'dictDefaultMessage': '<div class="dz-main-message">Drop files here to upload</div><div class="dz-secondary-message">(or click here)</div>',
 			'maxFilesize': 2048,
 			'init': function() {
 				this.on('addedfile', function(file) {
