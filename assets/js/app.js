@@ -12,11 +12,11 @@ var App = {
   '_loaded': 0,
   '_loading': false,
   '_io': null,
+  '_next': null,
 
   'init': function(jDepend, io) {
     this._io = io;
 
-    this.startPageLoad();
     this.runjDepend(jDepend);
   },
 
@@ -88,7 +88,12 @@ var App = {
     }
   },
 
+  'ready': function(next) {
+    this._next = next;
+  },
+
   'endPageLoad': function() {
+    var ref = this;
     this._loading = false;
 
     $('#pageload').animate({
@@ -97,7 +102,14 @@ var App = {
       'duration': 1000,
       'complete': function() {
         $(this).remove();
+        if(ref._next !== null) {
+          ref._next();
+        }
       }
     });
   }
 };
+
+$(function() {
+  App.startPageLoad();
+});
