@@ -58,6 +58,11 @@ function File(file) {
 
 	};
 
+	this.removeActions = function() {
+		var $dz = $('#dz-'+this._file.uid);
+		$dz.find('.dz-actions').remove();
+	};
+
 	// ##
 	this.init();
 };

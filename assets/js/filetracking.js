@@ -134,7 +134,7 @@ function FileTracking(fileObject) {
 		$currStage.removeClass('active');
 		$currStage.addClass('success');
 		this.nextStage();
-		
+
 		this._socket.post('/file/accept/validation', {
 			'file': this._file.name,
 			'_csrf': $('meta[name=token]').attr("content")
@@ -188,7 +188,8 @@ function FileTracking(fileObject) {
 	};
 
 	this.background = function() {
-
+		this._file.removeActions();
+		this.cancelLoad();
 	};
 
 	// ##
