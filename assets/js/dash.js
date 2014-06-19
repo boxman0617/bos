@@ -19,7 +19,13 @@ var DashTest = {
 			this._files.push({
 				'name': chance.string({'length': 20, 'pool': 'abcdefghijklmnopqrstuvwxyz_-'})+'.txt',
 				'stage': this._stages[0],
-				'status': this._normalStatuses[1]
+				'status': this._normalStatuses[1],
+				'arrival': new Date(),
+				'validation': null,
+				'validation_decision': null,
+				'load': null,
+				'load_decision': null,
+				'reverted': null
 			});
 		}
 
@@ -47,7 +53,7 @@ var DashTest = {
 	'moveAlong': function() {
 		for(var i in this._files) {
 			// if file is in arrival, prep, or load
-			if(this._files[i].stage === this._stages[0] || this._files[i].stage === this._stages[1] || this._files[i].stage === this._stages[1]) {
+			if(this._files[i].stage === this._stages[0] || this._files[i].stage === this._stages[1] || this._files[i].stage === this._stages[3]) {
 				if(this._files[i].status === this._normalStatuses[1]) {
 					this.setStatus(i, this._normalStatuses[chance.integer({'min': 0, 'max': 2})]);
 
@@ -69,6 +75,12 @@ var DashTest = {
 	'setStage': function(file_i, to) {
 		if(this._files[file_i].stage !== to) {
 			this._files[file_i].stage = to;
+			if(to === this._stages[2]) { // validation stage reached, add time
+				this._files[file_i].validation = new Date();
+			}
+			if(to === this._stages[3]) { // load stage reached, add time
+				this._files[file_i].load = new Date();
+			}
 			// if file is in validation or load qa
 			if(this._files[file_i].stage === this._stages[2] || this._files[file_i].stage === this._stages[4]) {
 				this._files[file_i].status = this._qaStatuses[1];
@@ -116,6 +128,34 @@ function DashStage(stageClass, dash) {
 		if(status === 'third') {
 			this._complete += amount;
 			amount = this._complete;			
+		}
+
+		if(this._class !== 'dash-stage-validation' && this._class !== 'dash-stage-load-qa') {
+			if(status === 'second') {
+				var $progress = $stage.find('.status-second').find('.progress-spinner');
+				if(amount > 0) {
+					if($progress.hasClass('hidden')) {
+						$progress.removeClass('hidden');
+					}
+				} else {
+					if(!$progress.hasClass('hidden')) {	
+						$progress.addClass('hidden');
+					}
+				}
+			}
+		} else {
+			if(status === 'second') {
+				var $alert = $stage.find('.status-second').find('.progress-alert');
+				if(amount > 0) {
+					if($alert.hasClass('hidden')) {
+						$alert.removeClass('hidden');
+					}
+				} else {
+					if(!$alert.hasClass('hidden')) {
+						$alert.addClass('hidden');
+					}
+				}
+			}
 		}
 
 		$stage.find('.status-'+status).find('.number').text(amount);
@@ -169,6 +209,70 @@ function DashStage(stageClass, dash) {
 	this.init();
 }
 
+function DashTableRow(file) {
+	this._file = file;
+	this._format = 'MMM DD, YYYY h:mm:ss a';
+
+	this.memberName = function() {
+		return 'Member ' + this._file.name.replace('.txt', '');
+	};
+
+    this.fileName = function() {
+    	return this._file.name;
+    };
+
+    this.fileArrival = function() {
+    	return (this._file.arrival === null) ? ' - ' : moment(this._file.arrival).format(this._format);
+    };
+
+    this.validation = function() {
+    	return (this._file.validation === null) ? ' - ' : moment(this._file.validation).format(this._format);
+    };
+
+    this.validationQA = function() {
+    	var validationQA = ' - ';
+		if(this._file.stage === Dash._stages[2]) {
+			if(this._file.validation_decision === null) {
+				validationQA = '<div style="text-align: center;"><a href="javascript:void(0);" title="Accept" data-file="'+this._file.name+'" data-action="accept" data-stage="validation" class="btn btn-default btn-xs"><i class="fa fa-check"></i></a>';
+				validationQA += '<a href="javascript:void(0);" title="Reject" data-file="'+this._file.name+'" data-action="reject" data-stage="validation" class="btn btn-default btn-xs"><i class="fa fa-times"></i></a>';
+				validationQA += '<a href="javascript:void(0);" title="View Matrices" data-file="'+this._file.name+'" data-action="matrices" data-stage="validation" class="btn btn-default btn-xs"><i class="fa fa-bar-chart-o"></i></a></div>';
+			}
+		}
+
+		if(this._file.validation_decision !== null && validationQA === ' - ') {
+			validationQA = moment(this._file.validation_decision).format(this._format);
+		}
+
+		return validationQA;
+    };
+
+    this.load = function() {
+    	return (this._file.load === null) ? ' - ' : moment(this._file.load).format(this._format);
+    };
+
+    this.loadQA = function() {
+    	var loadQA = ' - ';
+		if(this._file.stage === Dash._stages[4]) {
+			if(this._file.load_decision === null) {
+				loadQA = '<div style="text-align: center;"><a href="javascript:void(0);" title="Accept" data-file="'+this._file.name+'" data-action="accept" data-stage="loadQA" class="btn btn-default btn-xs"><i class="fa fa-check"></i></a>';
+				loadQA += '<a href="javascript:void(0);" title="Reject" data-file="'+this._file.name+'" data-action="reject" data-stage="loadQA" class="btn btn-default btn-xs"><i class="fa fa-times"></i></a>';
+				loadQA += '<a href="javascript:void(0);" title="View Matrices" data-file="'+this._file.name+'" data-action="matrices" data-stage="loadQA" class="btn btn-default btn-xs"><i class="fa fa-bar-chart-o"></i></a></div>';
+			}
+		}
+
+		if(this._file.load_decision !== null && loadQA === ' - ') {
+			loadQA = moment(this._file.load_decision).format(this._format);
+		}
+
+		return loadQA;
+    };
+
+    this.reverted = function() {
+		return (this._file.reverted === null) ? ' - ' : moment(this._file.reverted).format(this._format);
+    };
+
+}
+
 var Dash = {
 	'_started': false,
 	'_stages': [
@@ -186,7 +290,17 @@ var Dash = {
 		$('#dash-datatable').dataTable({
 			"language": {
             	"lengthMenu": "_MENU_"
-        	}
+        	},
+        	columns: [
+		        { data: 'memberName' },
+		        { data: 'fileName' },
+		        { data: 'fileArrival' },
+		        { data: 'validation' },
+		        { data: 'validationQA' },
+		        { data: 'load' },
+		        { data: 'loadQA' },
+		        { data: 'reverted' }
+		    ]
 		});
 		var $filter = $('.dataTables_wrapper').find('.dataTables_filter');
 		$filter.parent().prev().addClass('col-md-10');
@@ -233,7 +347,7 @@ var Dash = {
 						break;
 					case 'validation':
 					case 'in_progress':
-						counts.second++;;
+						counts.second++;
 						break;
 				}
 			}
@@ -264,6 +378,7 @@ var Dash = {
 	},
 
 	'_reloadTable': function(files, stage, status) {
+		var ref = this;
 		var $table = $('.dash-table');
 		for(var s in this._stages) {
 			if($table.hasClass(this._stages[i])) {
@@ -278,21 +393,85 @@ var Dash = {
 
 		for(var i in files) {
 			if(files[i].stage === stage && files[i].status === status) {
-				dataTable.row.add([
-					'Member ' + files[i].name.replace('.txt', ''),
-					files[i].name,
-					'<a href="javascript:void(0);" class="btn btn-default">Test</a>',
-					' - ',
-					' - ',
-					' - ',
-					' - ',
-					' - '
-				]);
+				var row = new DashTableRow(files[i]);
+				dataTable.row.add(row);
 			}
 		}
 		dataTable.draw();
 
+		$table.find('table tbody tr').each(function() {
+			$(this).find('a').each(function() {
+				$(this).on('click', function() {
+					ref._tableActions[$(this).attr('data-stage')+'_'+$(this).attr('data-action')]($(this).attr('data-file'), this);
+				});
+			});
+		});
+
 		$table.slideDown();
+	},
+
+	'_tableActions': {
+		'validation_accept': function(fileName, elem) {
+			var $cont = $(elem).parent();
+			$cont.empty();
+			$cont.append($('<span class="label label-success">Accepted</span>'));
+			for(var i in DashTest._files) {
+				if(DashTest._files[i].name === fileName) {
+					DashTest.setStatus(i, DashTest._qaStatuses[2]);
+					DashTest.setStage(i, Dash._stages[parseInt(Dash._stages.indexOf(DashTest._files[i].stage)) + 1]);
+					DashTest._files[i].validation_decision = new Date();
+					return true;
+				}
+			}
+		},
+
+		'validation_reject': function(fileName, elem) {
+			var $cont = $(elem).parent();
+			$cont.empty();
+			$cont.append($('<span class="label label-danger">Rejected</span>'));
+			for(var i in DashTest._files) {
+				if(DashTest._files[i].name === fileName) {
+					DashTest.setStatus(i, DashTest._qaStatuses[0]);
+					DashTest._files[i].validation_decision = new Date();
+					return true;
+				}
+			}
+		},
+
+		'validation_matrices': function(fileName, elem) {
+
+		},
+
+		'loadQA_accept': function(fileName, elem) {
+			var $cont = $(elem).parent();
+			$cont.empty();
+			$cont.append($('<span class="label label-success">Accepted</span>'));
+			for(var i in DashTest._files) {
+				if(DashTest._files[i].name === fileName) {
+					DashTest.setStatus(i, DashTest._qaStatuses[2]);
+					DashTest._files[i].load_decision = new Date();
+					return true;
+				}
+			}
+		},
+
+		'loadQA_reject': function(fileName, elem) {
+			var $cont = $(elem).parent();
+			$cont.empty();
+			$cont.append($('<span class="label label-danger">Rejected</span>'));
+			for(var i in DashTest._files) {
+				if(DashTest._files[i].name === fileName) {
+					DashTest.setStatus(i, DashTest._qaStatuses[0]);
+					DashTest._files[i].load_decision = new Date();
+					DashTest._files[i].reverted = new Date();
+					return true;
+				}
+			}
+		},
+
+		'loadQA_matrices': function(fileName, elem) {
+
+		}
 	}
 
 };
