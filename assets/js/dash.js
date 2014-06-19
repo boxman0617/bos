@@ -41,6 +41,7 @@ var DashTest = {
 	},
 
 	'loop': function() {
+		console.log('Loop');
 		var ref = this;
 
 		this.moveAlong();
@@ -127,7 +128,7 @@ function DashStage(stageClass, dash) {
 
 		if(status === 'third') {
 			this._complete += amount;
-			amount = this._complete;			
+			amount = this._complete;
 		}
 
 		if(this._class !== 'dash-stage-validation' && this._class !== 'dash-stage-load-qa') {
@@ -138,7 +139,7 @@ function DashStage(stageClass, dash) {
 						$progress.removeClass('hidden');
 					}
 				} else {
-					if(!$progress.hasClass('hidden')) {	
+					if(!$progress.hasClass('hidden')) {
 						$progress.addClass('hidden');
 					}
 				}
@@ -233,9 +234,9 @@ function DashTableRow(file) {
     	var validationQA = ' - ';
 		if(this._file.stage === Dash._stages[2]) {
 			if(this._file.validation_decision === null) {
-				validationQA = '<div style="text-align: center;"><a href="javascript:void(0);" title="Accept" data-file="'+this._file.name+'" data-action="accept" data-stage="validation" class="btn btn-default btn-xs"><i class="fa fa-check"></i></a>';
-				validationQA += '<a href="javascript:void(0);" title="Reject" data-file="'+this._file.name+'" data-action="reject" data-stage="validation" class="btn btn-default btn-xs"><i class="fa fa-times"></i></a>';
-				validationQA += '<a href="javascript:void(0);" title="View Matrices" data-file="'+this._file.name+'" data-action="matrices" data-stage="validation" class="btn btn-default btn-xs"><i class="fa fa-bar-chart-o"></i></a></div>';
+				validationQA = '<div style="text-align: center;"><a href="javascript:void(0);" title="Accept" data-file="'+this._file.name+'" data-action="accept" data-stage="validation" class="btn btn-default btn-xs action"><i class="fa fa-check"></i></a>';
+				validationQA += '<a href="javascript:void(0);" title="Reject" data-file="'+this._file.name+'" data-action="reject" data-stage="validation" class="btn btn-default btn-xs action"><i class="fa fa-times"></i></a>';
+				validationQA += '<a href="javascript:void(0);" title="View Matrices" data-file="'+this._file.name+'" data-action="matrices" data-stage="validation" class="btn btn-default btn-xs action"><i class="fa fa-bar-chart-o"></i></a></div>';
 			}
 		}
 
@@ -254,9 +255,9 @@ function DashTableRow(file) {
     	var loadQA = ' - ';
 		if(this._file.stage === Dash._stages[4]) {
 			if(this._file.load_decision === null) {
-				loadQA = '<div style="text-align: center;"><a href="javascript:void(0);" title="Accept" data-file="'+this._file.name+'" data-action="accept" data-stage="loadQA" class="btn btn-default btn-xs"><i class="fa fa-check"></i></a>';
-				loadQA += '<a href="javascript:void(0);" title="Reject" data-file="'+this._file.name+'" data-action="reject" data-stage="loadQA" class="btn btn-default btn-xs"><i class="fa fa-times"></i></a>';
-				loadQA += '<a href="javascript:void(0);" title="View Matrices" data-file="'+this._file.name+'" data-action="matrices" data-stage="loadQA" class="btn btn-default btn-xs"><i class="fa fa-bar-chart-o"></i></a></div>';
+				loadQA = '<div style="text-align: center;"><a href="javascript:void(0);" title="Accept" data-file="'+this._file.name+'" data-action="accept" data-stage="loadQA" class="btn btn-default btn-xs action"><i class="fa fa-check"></i></a>';
+				loadQA += '<a href="javascript:void(0);" title="Reject" data-file="'+this._file.name+'" data-action="reject" data-stage="loadQA" class="btn btn-default btn-xs action"><i class="fa fa-times"></i></a>';
+				loadQA += '<a href="javascript:void(0);" title="View Matrices" data-file="'+this._file.name+'" data-action="matrices" data-stage="loadQA" class="btn btn-default btn-xs action"><i class="fa fa-bar-chart-o"></i></a></div>';
 			}
 		}
 
@@ -286,7 +287,7 @@ var Dash = {
 		}
 
 		this._started = true;
-		
+
 		$('#dash-datatable').dataTable({
 			"language": {
             	"lengthMenu": "_MENU_"
@@ -339,7 +340,7 @@ var Dash = {
 		for(var i = 0; i < files.length; i++) {
 			if(files[i].stage === stage) {
 				switch(files[i].status) {
-					case 'failed': 
+					case 'failed':
 						counts.first++;
 						break;
 					case 'completed':
@@ -393,18 +394,13 @@ var Dash = {
 
 		for(var i in files) {
 			if(files[i].stage === stage && files[i].status === status) {
-				var row = new DashTableRow(files[i]);
-				dataTable.row.add(row);
+				dataTable.row.add(new DashTableRow(files[i]));
 			}
 		}
 		dataTable.draw();
 
-		$table.find('table tbody tr').each(function() {
-			$(this).find('a').each(function() {
-				$(this).on('click', function() {
-					ref._tableActions[$(this).attr('data-stage')+'_'+$(this).attr('data-action')]($(this).attr('data-file'), this);
-				});
-			});
+		$table.find('table tbody').on('click', 'a.action', function() {
+			ref._tableActions[$(this).attr('data-stage')+'_'+$(this).attr('data-action')]($(this).attr('data-file'), this);
 		});
 
 		$table.slideDown();
@@ -439,7 +435,9 @@ var Dash = {
 		},
 
 		'validation_matrices': function(fileName, elem) {
-
+			var $modal = $('#matrices-modal');
+			$modal.find('.file-name').text(fileName);
+			$modal.modal();
 		},
 
 		'loadQA_accept': function(fileName, elem) {
@@ -470,7 +468,9 @@ var Dash = {
 		},
 
 		'loadQA_matrices': function(fileName, elem) {
-
+			var $modal = $('#matrices-modal');
+			$modal.find('.file-name').text(fileName);
+			$modal.modal();
 		}
 	}
 
