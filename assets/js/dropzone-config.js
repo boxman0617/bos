@@ -9,6 +9,8 @@ var DropZoneConfig = {
 	'_id': null,
 	'_csrf': $('meta[name=token]').attr('content'),
 	'_files': [],
+	'_largeFile': 536870912,
+	'_myDZ': null,
 
 	'init': function(id) {
 		this._id = id;
@@ -17,7 +19,7 @@ var DropZoneConfig = {
 
 			Dropzone.autoDiscover = false;
 
-			var myDropzone = new Dropzone('#'+this._id);
+			this._myDZ = new Dropzone('#'+this._id);
 		}
 	},
 

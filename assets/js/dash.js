@@ -12,6 +12,10 @@ var DashTest = {
 	'_dash': null,
 
 	'init': function(dash) {
+		if($('#dash').length === 0) {
+			return false;
+		}
+
 		this._dash = dash;
 		var numOfFiles = chance.integer({'min': 1, 'max': 100});
 
@@ -41,7 +45,6 @@ var DashTest = {
 	},
 
 	'loop': function() {
-		console.log('Loop');
 		var ref = this;
 
 		this.moveAlong();
