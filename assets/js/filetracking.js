@@ -1,6 +1,9 @@
 /**
  * FileTracking.js ::
  */
+'use strict';
+/* global $, App, console, Matrices */
+/* exported FileTracking */
 
 function FileTracking(fileObject) {
 	this._file = fileObject;
@@ -63,7 +66,7 @@ function FileTracking(fileObject) {
 
 		this._socket.post('/file/start/tracking', {
 			'file': this._file.name,
-			'_csrf': $('meta[name=token]').attr("content")
+			'_csrf': $('meta[name=token]').attr('content')
 		}, function(res) {
 			console.log('Response: ', res);
 		});
@@ -137,7 +140,7 @@ function FileTracking(fileObject) {
 
 		this._socket.post('/file/accept/validation', {
 			'file': this._file.name,
-			'_csrf': $('meta[name=token]').attr("content")
+			'_csrf': $('meta[name=token]').attr('content')
 		}, function(res) {
 			console.log('Response: ', res);
 		});

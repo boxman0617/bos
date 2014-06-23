@@ -6,6 +6,10 @@
  * example: var l = new LoadIndicator('#myComponent');
  * dependsOn: ['chance']
  */
+'use strict';
+/* global $, chance */
+/* exported LoadIndicator */
+
 function LoadIndicator(selector) {
   this._selector = selector;
   this._id = 'li-'+chance.hash({length: 25});

@@ -5,6 +5,10 @@
  *
  * dependsOn: ['dropzone.js', 'file.js']
  */
+'use strict';
+/* global $, chance, Dropzone, File */
+/* exported DropZoneConfig */
+
 var DropZoneConfig = {
 	'_id': null,
 	'_csrf': $('meta[name=token]').attr('content'),
@@ -39,14 +43,14 @@ var DropZoneConfig = {
 		          	data.append('_csrf', ref._csrf);
 		        });
 
-				this.on('success', function(file, res) {
-					ref.onSuccess(file, res);
+				this.on('success', function(file) {
+					ref.onSuccess(file);
 				});
 			}
 		};
 	},
 
-	'onSuccess': function(file, res) {
-		var loadedFile = new File(file);
+	'onSuccess': function(file) {
+		new File(file);
 	}
 };

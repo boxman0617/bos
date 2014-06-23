@@ -1,6 +1,9 @@
 /**
  * Matrices.js :: 
  */
+'use strict';
+/* global $ */
+/* exported Matrices */
 
 function Matrices(tracking) {
 	this._modalId = '#matrices-modal';
@@ -25,4 +28,4 @@ function Matrices(tracking) {
 
 	// ##
 	this.init();
-};
+}

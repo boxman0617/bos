@@ -1,3 +1,6 @@
+'use strict';
+/* global $, chance, LoadIndicator, moment */
+
 var DashTest = {
 	'_files': [],
 	'_stages': [
@@ -292,8 +295,8 @@ var Dash = {
 		this._started = true;
 
 		$('#dash-datatable').dataTable({
-			"language": {
-            	"lengthMenu": "_MENU_"
+			'language': {
+            	'lengthMenu': '_MENU_'
         	},
         	columns: [
 		        { data: 'memberName' },
@@ -385,8 +388,8 @@ var Dash = {
 		var ref = this;
 		var $table = $('.dash-table');
 		for(var s in this._stages) {
-			if($table.hasClass(this._stages[i])) {
-				$table.removeClass(this._stages[i]);
+			if($table.hasClass(this._stages[s])) {
+				$table.removeClass(this._stages[s]);
 			}
 		}
 
@@ -437,7 +440,7 @@ var Dash = {
 			}
 		},
 
-		'validation_matrices': function(fileName, elem) {
+		'validation_matrices': function(fileName) {
 			var $modal = $('#matrices-modal');
 			$modal.find('.file-name').text(fileName);
 			$modal.modal();
@@ -470,7 +473,7 @@ var Dash = {
 			}
 		},
 
-		'loadQA_matrices': function(fileName, elem) {
+		'loadQA_matrices': function(fileName) {
 			var $modal = $('#matrices-modal');
 			$modal.find('.file-name').text(fileName);
 			$modal.modal();

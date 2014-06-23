@@ -7,6 +7,9 @@
  * exampleUsage: var singleFile = new File(file);
  * dependsOn: ['LoadIndicator']
  */
+'use strict';
+/* global $, LoadIndicator, FileTracking */
+/* exported File */
 
 function File(file) {
 	this._file = file;
@@ -35,7 +38,7 @@ function File(file) {
 		    'type': 'POST',
 		    'url': '/file/start/load',
 		    'data': {
-		        '_csrf': $('meta[name=token]').attr("content"),
+		        '_csrf': $('meta[name=token]').attr('content'),
 		        'file': this._file.name
 		    },
 		    'dataType': 'JSON',
@@ -65,4 +68,4 @@ function File(file) {
 
 	// ##
 	this.init();
-};
+}

@@ -6,8 +6,11 @@
  *
  * @author Alan Tirado
  */
+'use strict';
+/* global $ */
 
 var App = {
+
   '_loadLength': 0,
   '_loaded': 0,
   '_loading': false,

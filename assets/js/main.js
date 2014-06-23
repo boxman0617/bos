@@ -1,3 +1,6 @@
+'use strict';
+/* global $, Dash, App, DashTest, jDepend, io */
+
 $(function(){
 	Dash.init();
 	
