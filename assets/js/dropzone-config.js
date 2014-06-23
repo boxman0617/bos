@@ -21,8 +21,6 @@ var DropZoneConfig = {
 		if($('#'+this._id).length > 0) {
 			this.attachEvents();
 
-			Dropzone.autoDiscover = false;
-
 			this._myDZ = new Dropzone('#'+this._id);
 		}
 	},

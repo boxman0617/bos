@@ -20,6 +20,10 @@ module.exports = {
 		res.json({'status': 'OK'}, 200);
 	},
 
+	'getValidationMatrices': function(req, res) {
+		
+	},
+
 	'startTracking': function(req, res) {
 		res.json({'msg': 'Uhhh...'}, 200);
 

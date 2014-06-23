@@ -171,6 +171,9 @@ function FileTracking(fileObject) {
 			var $stage = this.getCurrentStageELM($(this._trackingId));
 			$stage.addClass('active');
 			$stage.addClass('running');
+			if(App.isSmallDevice()) {
+				$(this._trackingId).scrollTo($stage, 800);
+			}
 		} else { // if there is no more stages
 			this.endTracking();
 		}

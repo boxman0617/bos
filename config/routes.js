@@ -42,7 +42,8 @@ module.exports.routes = {
 
   'post /file/start/load': 'FileController.start',
   'post /file/start/tracking': 'FileController.startTracking',
-  'post /file/accept/validation': 'FileController.validationAccepted'
+  'post /file/accept/validation': 'FileController.validationAccepted',
+  'get /file/matrices/validation': 'FileController.getValidationMatrices'
 
 
   /*

@@ -1,5 +1,5 @@
 'use strict';
-/* global $, chance, LoadIndicator, moment */
+/* global $, App, chance, LoadIndicator, moment */
 
 var DashTest = {
 	'_files': [],
@@ -409,7 +409,11 @@ var Dash = {
 			ref._tableActions[$(this).attr('data-stage')+'_'+$(this).attr('data-action')]($(this).attr('data-file'), this);
 		});
 
-		$table.slideDown();
+		$table.slideDown(function() {
+			if(App.isSmallDevice()) {
+				$(document).scrollTo($table, 800);
+			}
+		});
 	},
 
 	'_tableActions': {
