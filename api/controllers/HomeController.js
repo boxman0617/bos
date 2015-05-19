@@ -17,9 +17,14 @@
 
 module.exports = {
 	'index': function(req, res) {
-		res.view({
+		var opts = {
 			'active': 'index'
-		});
+		};
+		if(req.param('test')) {
+			console.log('Testing...');
+			opts.test = true;
+		}
+		res.view(opts);
 	},
 
 	'dash': function(req, res) {

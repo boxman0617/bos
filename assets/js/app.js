@@ -10,6 +10,8 @@
 /* global $ */
 
 var App = {
+  'dev': false,
+  'test': false,
 
   '_loadLength': 0,
   '_loaded': 0,
@@ -54,6 +56,17 @@ var App = {
       };
     }
 
+  },
+
+  'createPageLoadingComponents': function() {
+    var $load = $('<div id="pageload"></div>').append(
+      $('<div class="pl-message">One moment please...</div>').append(
+        $('<div class="pl-bar pl-bar1 nodisplay"><div style="width: 0%;"></div></div>'),
+        $('<div class="pl-bar pl-bar2 nodisplay"><div style="width: 0%;"></div></div>'),
+        $('<div class="pl-bar pl-bar3 nodisplay"><div style="width: 0%;"></div></div>')
+      )
+    );
+    $('body').append($load);
   },
 
   'isSmallDevice': function() {

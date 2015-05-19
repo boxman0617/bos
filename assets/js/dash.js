@@ -1,5 +1,5 @@
 'use strict';
-/* global $, App, chance, LoadIndicator, moment */
+/* global $, App, chance, LoadIndicator, moment, Matrices */
 
 var DashTest = {
 	'_files': [],
@@ -444,10 +444,14 @@ var Dash = {
 			}
 		},
 
-		'validation_matrices': function(fileName) {
+		'validation_matrices': function(fileName, elem) {
 			var $modal = $('#matrices-modal');
 			$modal.find('.file-name').text(fileName);
-			$modal.modal();
+
+			var m = new Matrices(this);
+			m.elem = elem;
+			m.fileName = fileName;
+			m.stage = 'validation';
 		},
 
 		'loadQA_accept': function(fileName, elem) {
@@ -477,10 +481,22 @@ var Dash = {
 			}
 		},
 
-		'loadQA_matrices': function(fileName) {
+		'loadQA_matrices': function(fileName, elem) {
 			var $modal = $('#matrices-modal');
 			$modal.find('.file-name').text(fileName);
-			$modal.modal();
+
+			var m = new Matrices(this);
+			m.elem = elem;
+			m.fileName = fileName;
+			m.stage = 'loadQA';
+		},
+
+		'acceptStage': function(m) {
+			this[m.stage+'_accept'](m.fileName, m.elem);
+		},
+
+		'rejectStage': function(m) {
+			this[m.stage+'_reject'](m.fileName, m.elem);
 		}
 	}
 

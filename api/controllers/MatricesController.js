@@ -1,5 +1,5 @@
 /**
- * FileController
+ * MatricesController
  *
  * @module      :: Controller
  * @description	:: A set of functions called `actions`.
@@ -16,32 +16,21 @@
  */
 
 module.exports = {
-	'start': function(req, res) {
-		res.json({'status': 'OK'}, 200);
+    
+	'validation': function(req, res) {
+		res.json(ValidationMatrices.getMatrices());
 	},
 
-	'startTracking': function(req, res) {
-		res.json({'msg': 'Uhhh...'}, 200);
+	'loadQA': function(req, res) {
 
-		setTimeout(function() {
-			req.socket.emit('message', 'success');
-			setTimeout(function() {
-				res.socket.emit('message', 'success');
-				setTimeout(function() {
-					res.socket.emit('message', 'check');
-				}, 2000);
-			}, 2000);
-		}, 2000);
 	},
 
-	'validationAccepted': function(req, res) {
-		res.json(true, 200);
 
-		setTimeout(function() {
-			req.socket.emit('message', 'success');
-			setTimeout(function() {
-				res.socket.emit('message', 'check');
-			}, 2000);
-		}, 2000);
-	}
+  /**
+   * Overrides for the settings in `config/controllers.js`
+   * (specific to MatricesController)
+   */
+  _config: {}
+
+  
 };

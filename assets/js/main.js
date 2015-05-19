@@ -8,5 +8,8 @@ $(function(){
 	App.ready(function() {
 		// TEST
 		DashTest.init(Dash);
+		if(App.test) {
+			mocha.run();
+		}
 	});
 });

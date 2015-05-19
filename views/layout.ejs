@@ -30,6 +30,12 @@
     var jDepend = [];
     </script>
 
+    <% if(process.env.NODE_ENV === 'development' && typeof test !== 'undefined') { %>
+    <!-- DEVUSEONLY -->
+    <link href="testing/mocha.css" rel="stylesheet">
+    <!-- DEVUSEONLY -->
+    <% } %>
+
     <!-- Modernizr.js 2.8.2 -->
     <script type="text/javascript" src="js/libraries/modernizr.custom.64378.js"></script>
     <!-- /END -->
@@ -65,6 +71,12 @@
     <!-- /END -->
 
     <script type="text/javascript" src="js/app.js"></script>
+    <% if(process.env.NODE_ENV === 'development') { %>
+    <script type="text/javascript">App.dev = true;</script>
+    <% } %>
+    <% if(process.env.NODE_ENV === 'development' && typeof test !== 'undefined') { %>
+    <script type="text/javascript">App.test = true;</script>
+    <% } %>
     <script type="text/javascript" src="js/libraries/chance.min.js"></script>
     <script type="text/javascript" src="js/libraries/socket.io.js"></script>
     <script type="text/javascript" src="js/libraries/sails.io.js"></script>
@@ -80,6 +92,19 @@
     <script type="text/javascript" src="js/file.js"></script>
     <script type="text/javascript" src="js/dropzone-config.js"></script>
     <script type="text/javascript" src="js/dash.js"></script>
+
+    <% if(process.env.NODE_ENV === 'development' && typeof test !== 'undefined') { %>
+    <!-- DEVUSEONLY -->
+    <div id="mocha"></div>
+    <div id="messages"></div>
+    <div id="fixtures"></div>
+    <script type="text/javascript" src="testing/mocha.js"></script>
+    <script type="text/javascript" src="testing/chai.js"></script>
+    <script type="text/javascript">mocha.setup('bdd')</script>
+    <script type="text/javascript" src="testing/tests/app_test.js"></script>
+    <!-- DEVUSEONLY -->
+    <% } %>
+    
     <script type="text/javascript" src="js/main.js"></script>
   </body>
 </html>
